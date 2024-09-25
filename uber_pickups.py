@@ -25,3 +25,14 @@ data_load_state = st.text('Loading data...')
 data = load_data(10000)
 # Notify the reader that the data was successfully loaded.
 data_load_state.text('Done! Using (st.cache_data)')
+
+# Taking a look at the raw data
+st.subheader('Raw data')
+st.write(data)
+
+# Let's see the data in a histogram
+st.subheader('Number of pickups by hour')
+hist_values = np.histogram(
+    data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
+
+st.bar_chart(hist_values)
